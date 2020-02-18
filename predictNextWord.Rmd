@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 ## Usage and Limitations
 
-To predict next word in a sentense, open the [Shiny Web App](https://abraun.shinyapps.io/Words_prediction/), enter the phrase and click on 'Predict Next Word'
+To predict next word in a sentense, open the [Shiny Web App](https://raviaddanki.shinyapps.io/predictNext/), enter the phrase and click on 'Predict Next Word'
 
 Instructions for using the app, various features, and limitations can be found on   I N S T R U C T I O N S   tab
 
@@ -18,7 +18,9 @@ This app is based on n-Gram modeling. For example, a 3-Gram model is developed b
 
 The dataset used is sourced from [SwiftKey-Cousera weblink](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip) 
 
+The source code for the project can be seen at [Predict Next Word](https://github.com/ravi-addanki/predictNextWord). Please read Readme.md before proceeding with next.
 
+Note: Please allow 15 s for initial loading of application.
 
 ## Predicting Next Word
 

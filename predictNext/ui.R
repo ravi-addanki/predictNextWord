@@ -49,6 +49,7 @@ shinyUI(navbarPage(
                         label = "Enable Discounting"
                     ),
                     submitButton("Predict next word"),
+                    p("Note: wait 15 s for initial loading")
                 ),
                 
                 # Show a plot of the generated distribution

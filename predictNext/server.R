@@ -14,7 +14,7 @@ require(stringr)
 require(stringi)
 require(dplyr)
 load("data/finalWordDT.Rdt")
-#load("data/wordDTs.Rdt")
+
 twoWordDT2$prefix <- sub(" [[:alnum:]]*$","",twoWordDT2$name)
 twoWordDT2$word <- sub("^[[:alnum:]]* ","",twoWordDT2$name)
 threeWordDT2$prefix <- sub(" [[:alnum:]]*$","",threeWordDT2$name)
