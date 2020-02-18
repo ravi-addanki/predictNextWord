@@ -48,8 +48,8 @@ Note: Please allow 15 s for initial loading of application.
 - Data was split into 98% Training set and 2% Development set
 - Term Document matrix (TDM) processing was optimized to adher to the memory limits (16GB RAM) by using file system while generating/summarizing 3-Gram or 4-Gram tokens.
 - To control the volume less frequent word combinations (<5 in the whole set) were ignored
-- Size of final data file prepared (deployed on shiny io) is 20 Mb 
-- Object size of data sets once read into memory is 250 MB
+- Size of final data file prepared (deployed on shiny io) is 30 Mb 
+- Object size of data sets once read into memory is 250 MB (+ 50 for quick check feature)
 
 ## Stepping stones for success (a.k.a failed models)
 

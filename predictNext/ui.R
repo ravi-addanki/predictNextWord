@@ -48,8 +48,7 @@ shinyUI(navbarPage(
                         value = TRUE,
                         label = "Enable Discounting"
                     ),
-                    submitButton("Predict next word"),
-                    p("Note: wait 15 s for initial loading")
+                    submitButton("Predict next word")
                 ),
                 
                 # Show a plot of the generated distribution
@@ -155,7 +154,8 @@ shinyUI(navbarPage(
                 tags$em("Note:"),
                 "In most cases user may not see significant changes in the",
                 "list of words suggested by checking or un-checking this box,",
-                "but may observe slight changes in the probability in lower digits."
+                "but may observe slight changes in the probability in lower digits.",
+                "For larger result set, uncheking this box would improve response time."
             ),
             hr()
         )

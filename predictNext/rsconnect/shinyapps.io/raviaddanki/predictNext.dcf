@@ -5,8 +5,8 @@ account: raviaddanki
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1824019
-bundleId: 2807842
+bundleId: 2809373
 url: https://raviaddanki.shinyapps.io/predictNext/
-when: 1581987544.3623
+when: 1582040780.34469
 asMultiple: FALSE
 asStatic: FALSE

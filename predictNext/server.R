@@ -14,24 +14,27 @@ require(stringr)
 require(stringi)
 require(dplyr)
 load("data/finalWordDT.Rdt")
-
-twoWordDT2$prefix <- sub(" [[:alnum:]]*$","",twoWordDT2$name)
-twoWordDT2$word <- sub("^[[:alnum:]]* ","",twoWordDT2$name)
-threeWordDT2$prefix <- sub(" [[:alnum:]]*$","",threeWordDT2$name)
-threeWordDT2$word <- sub("^[[:alnum:]]* [[:alnum:]]* ","",threeWordDT2$name)
-oneWordDT2$word <- oneWordDT2$name
+load("data/wordDTs.Rdt")
+# twoWordDT2$prefix <- sub(" [[:alnum:]]*$","",twoWordDT2$name)
+# twoWordDT2$word <- sub("^[[:alnum:]]* ","",twoWordDT2$name)
+# threeWordDT2$prefix <- sub(" [[:alnum:]]*$","",threeWordDT2$name)
+# threeWordDT2$word <- sub("^[[:alnum:]]* [[:alnum:]]* ","",threeWordDT2$name)
+# oneWordDT2$word <- oneWordDT2$name
 setkey(twoWordDT2,prefix)
 setkey(threeWordDT2,prefix)
 setkey(oneWordDT2,word)
-twoWordsDTs <- twoWordDT2 %>% group_by(prefix) %>% top_n(5,prob21) %>% 
-  mutate(prob = prob21)  %>%
-  select(prefix,word,prob) %>% as.data.table()
-threeWordsDTs <- threeWordDT2 %>% group_by(prefix) %>% top_n(5,prob31) %>% 
-  mutate(prob = prob31) %>%
-  select(prefix,word,prob) %>% as.data.table()
-oneWordDTs <- oneWordDT2 %>% top_n(5,prob1) %>%
-  mutate(prob = prob1) %>%
-  select(word,name,prob) %>% as.data.table()
+# twoWordsDTs <- twoWordDT2 %>% group_by(prefix) %>% top_n(5,prob21) %>% 
+#   mutate(prob = prob21)  %>% filter(prob !=0) %>%
+#   select(prefix,word,prob) %>% as.data.table()
+# threeWordsDTs <- threeWordDT2 %>% group_by(prefix) %>% top_n(5,prob31) %>% 
+#   mutate(prob = prob31) %>% filter(prob !=0) %>%
+#   select(prefix,word,prob) %>% as.data.table()
+# oneWordDTs <- oneWordDT2 %>% top_n(5,prob1) %>%
+#   mutate(prob = prob1) %>%
+#   select(word,name,prob) %>% as.data.table()
+twoWordsDTs <- twoWordsDTs %>% filter(prob !=0) %>% as.data.table()
+threeWordsDTs <- threeWordsDTs %>% filter(prob !=0) %>% as.data.table()
+
 setkey(twoWordsDTs,prefix)
 setkey(threeWordsDTs,prefix)
 replNA <- function(x){if(is.na(x)) 0 else x}
