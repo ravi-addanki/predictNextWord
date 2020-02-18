@@ -1,0 +1,64 @@
+---
+title: "Predict Next Word"
+author: "Ravi Addanki"
+date: "2/17/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+## Usage and Limitations
+
+To predict next word in a sentense, open the [Shiny Web App](https://abraun.shinyapps.io/Words_prediction/), enter the phrase and click on 'Predict Next Word'
+
+Instructions for using the app, various features, and limitations can be found on   I N S T R U C T I O N S   tab
+
+This app is based on n-Gram modeling. For example, a 3-Gram model is developed by first computing statistics for the combination of 3 consecutive words in a sentense.
+
+The dataset used is sourced from [SwiftKey-Cousera weblink](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip) 
+
+
+
+## Predicting Next Word
+
+- Prediction is made based on n-Gram (1-Gram, 2-Gram, 3-Gram) word statistical models 
+- Probability of next word is computed based on [Language Modeling][1] course notes
+- Smoothed Estimation of Trigram Models with Discounting methods and bucketing is used
+- Once the sentense is bucketed: for each word,
+
+    $$ Probability = L_1 * P_3 + L_2 * P_2 + L_3 * P_1$$
+    
+    where $L_1, L_2, L_3$ are weightages for 3,2,1-Gram models
+    
+    and $P_3, P_2, P_1$ are discounted probabilities based on 3,2,1-gram models.
+
+
+[1]: http://www.cs.columbia.edu/~mcollins/lm-spring2013.pdf  "Language Modeling"  
+
+
+
+## Data Preparation
+
+- Data sourced from [SwiftKey-Cousera weblink](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip) was extracted 
+- Non-English characters, numbers, white-spaces, Punctuation, one/two character words, and stop words were removed 
+- Special characters (/032 and /007) were removed
+- Data was split into 98% Training set and 2% Development set
+- Term Document matrix (TDM) processing was optimized to adher to the memory limits (16GB RAM) by using file system while generating/summarizing 3-Gram or 4-Gram tokens.
+- To control the volume less frequent word combinations (<5 in the whole set) were ignored
+- Size of final data file prepared (deployed on shiny io) is 20 Mb 
+- Object size of data sets once read into memory is 250 MB
+
+## Stepping stones for success (a.k.a failed models)
+
+- Attempts to modify the model by using skipped word feature (considering word combinations separated by one or two words) did not yeild much benefit with real world examples.
+
+- Attempts to modify the model by restricting the words list to the dictionary (i.e. the words that make up the 90% of word instances) and ignoring other words resulted in negative gains (based on limited testing)
+
+
+## Successful model
+- The successful model was the one that used triGram model suggested by Language Modeling  course notes[^1] which is based on Markov chains with Smoothed Estimation and Linear interpolation with bucketing.
+- The successful model was trained more than 100 iterations to calulate perplexity and find the optimal Linear coefficients in each bucket.
+- The failed attempts seems to suggest that the model accuracy can be improved only by incorporating rules of grammer (semantics) into the model. Further research is required in this direction.
+
+[^1] Michael Collins (Spring 2013) Columbia University Course notes. Language Modeling. Retrieved from http://www.cs.columbia.edu/~mcollins/lm-spring2013.pdf

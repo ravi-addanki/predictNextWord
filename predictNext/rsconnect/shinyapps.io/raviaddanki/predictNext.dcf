@@ -1,0 +1,12 @@
+name: predictNext
+title: predictNext
+username:
+account: raviaddanki
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1824019
+bundleId: 2807527
+url: https://raviaddanki.shinyapps.io/predictNext/
+when: 1581975940.77876
+asMultiple: FALSE
+asStatic: FALSE
